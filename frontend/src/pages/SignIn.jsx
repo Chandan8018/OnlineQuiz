@@ -108,7 +108,7 @@ function SignIn() {
 
           <Button
             borderRadius='8px'
-            className='bg-gray-600 dark:bg-slate-400 text-white dark:text-black border-neutral-200 dark:border-slate-800 w-full text-md font-semibold rounded-[8px] hover:bg-blue-400'
+            className='bg-[#ff5555] dark:bg-blue-400 hover:dark:bg-[#ff5555]  text-white  border-neutral-200 dark:border-slate-800 w-full text-md font-semibold h-12 rounded-[8px] hover:bg-blue-400'
             type='submit'
           >
             {loading ? (

@@ -283,7 +283,7 @@ function Profile() {
 
           <Button
             borderRadius='1.75rem'
-            className='bg-gray-600 dark:bg-slate-400 text-white dark:text-black border-neutral-200 dark:border-slate-800 w-full text-md font-semibold'
+            className='bg-gray-600 dark:bg-slate-400 text-white dark:text-black border-neutral-200 dark:border-slate-800 w-full h-12 text-md font-semibold'
             type='submit'
             disabled={loading || imageFileUploading}
           >

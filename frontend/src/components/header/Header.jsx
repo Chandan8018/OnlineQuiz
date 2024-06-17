@@ -6,7 +6,6 @@ import {
   NavbarCollapse,
   NavbarLink,
   NavbarToggle,
-  TextInput,
 } from "flowbite-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaMoon, FaSignOutAlt, FaSun, FaUserCheck } from "react-icons/fa";
@@ -15,12 +14,7 @@ import { toggleTheme } from "../../redux/theme/themeSlice";
 import { Button } from "../ui/moving-border";
 import { ImProfile } from "react-icons/im";
 import { signoutSuccess } from "../../redux/user/userSlice";
-import { TiThMenu } from "react-icons/ti";
-import { FcSearch } from "react-icons/fc";
 import { PlaceholdersAndVanishInput } from "../ui/placeholders-and-vanish-input";
-import SideBarComp from "../dash/SideBarComp";
-import { useState } from "react";
-import { Drawer } from "@mui/material";
 
 function Header() {
   const path = useLocation().pathname;
@@ -36,12 +30,12 @@ function Header() {
     >
       <NavbarBrand>
         <Link to='/'>
-          <span className='flex justify-start items-center gap-1 whitespace-nowrap text-xl font-semibold dark:text-white pl-7'>
-            <span className='bg-blue-500 dark:bg-[#ff5555] rounded-xl rounded-tr-none rounded-br-none py-1 pl-1'>
-              Electric
+          <span className='flex justify-start items-center whitespace-nowrap text-xl font-semibold dark:text-white pl-7'>
+            <span className='bg-blue-500 dark:bg-[#ff5555] rounded-xl rounded-tr-none rounded-br-none py-1 px-1 text-xl font-bold'>
+              Online
             </span>{" "}
-            <span className='bg-[#ff5555] dark:bg-blue-500 rounded-xl rounded-tl-none rounded-bl-none py-1 pr-1'>
-              Bills™
+            <span className='bg-[#ff5555] dark:bg-blue-500 rounded-xl rounded-tl-none rounded-bl-none py-1 px-1 text-xl font-bold'>
+              quiz
             </span>
           </span>
         </Link>
@@ -58,7 +52,7 @@ function Header() {
       <div className='flex gap-5 md:order-2 md:pr-10'>
         <Button
           borderRadius='1.75rem'
-          className='bg-tansparent text-black dark:text-white border-neutral-200 dark:border-slate-800 w-full mr-10'
+          className='bg-tansparent text-black dark:text-white border-neutral-200 dark:border-slate-800 w-full h-10 mr-10'
           onClick={() => dispatch(toggleTheme())}
         >
           {theme === "light" ? (

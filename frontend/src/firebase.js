@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDGXtWHldYGVhZ_UNcfe3dUeXrOG86rOsA",
-  authDomain: "blackcofferasignment.firebaseapp.com",
-  projectId: "blackcofferasignment",
-  storageBucket: "blackcofferasignment.appspot.com",
-  messagingSenderId: "224684009193",
-  appId: "1:224684009193:web:afe42037c643ebc4b0b278",
+  apiKey: "AIzaSyBnwOBhbgNblzirS3Wtx_RYU00QyfC_UvQ",
+  authDomain: "onlinequiz-8ee63.firebaseapp.com",
+  projectId: "onlinequiz-8ee63",
+  storageBucket: "onlinequiz-8ee63.appspot.com",
+  messagingSenderId: "993835842793",
+  appId: "1:993835842793:web:42948fc532d066c2218478",
 };
 
 // Initialize Firebase

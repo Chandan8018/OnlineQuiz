@@ -1,12 +1,13 @@
-import { Button, Drawer, Sidebar, TextInput } from "flowbite-react";
+import { Drawer, Sidebar, TextInput } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
-import { HiSearch, HiUser } from "react-icons/hi";
-import { MdDashboard } from "react-icons/md";
+import { HiSearch } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { signoutSuccess } from "../../redux/user/userSlice";
 import { CiCircleChevRight } from "react-icons/ci";
+import SidebarIcons from "./SidebarIcons";
+import { Button } from "../ui/moving-border";
 
 function SideBarComp() {
   const { currentUser } = useSelector((state) => state.user);
@@ -14,7 +15,9 @@ function SideBarComp() {
   const navigate = useNavigate();
   const location = useLocation();
   const [tab, setTab] = useState("");
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const { DashboardIcon, ProfileIcon } = SidebarIcons();
+
   const handleClose = () => setIsOpen(false);
 
   useEffect(() => {
@@ -38,18 +41,24 @@ function SideBarComp() {
       console.log(error.message);
     }
   };
+
   return (
     currentUser && (
       <>
         <div className='flex items-center h-full ml-0 md:ml-2 '>
-          <button
+          <Button
+            borderRadius='1.75rem'
+            className='bg-transparent text-black dark:text-white border-neutral-200 dark:border-slate-800 h-8 w-8'
             onClick={() => setIsOpen(true)}
-            className='p-1 rounded-full bg-gray-300 dark:bg-gray-400 flex justify-center items-center'
           >
             <CiCircleChevRight className='h-7 w-7' />
-          </button>
+          </Button>
         </div>
-        <Drawer open={isOpen} onClose={handleClose}>
+        <Drawer
+          open={isOpen}
+          onClose={handleClose}
+          className='w-[225px] h-screen'
+        >
           <Drawer.Header title='MENU' titleIcon={() => <></>} />
           <Drawer.Items>
             <Sidebar
@@ -64,7 +73,7 @@ function SideBarComp() {
                       type='search'
                       placeholder='Search'
                       required
-                      size={32}
+                      className='w-48'
                     />
                   </form>
                   <Sidebar.Items>
@@ -72,8 +81,8 @@ function SideBarComp() {
                       <Link to='/dashboard?tab=dash'>
                         <Sidebar.Item
                           active={tab === "dash"}
-                          icon={MdDashboard}
-                          className='cursor-pointer'
+                          icon={DashboardIcon}
+                          className='cursor-pointer  hover:bg-[#ff5555] hover:dark:bg-[#0345fc] hover:text-white hover:text-md hover:opacity-85 rounded-lg w-48 mb-4'
                           as='div'
                         >
                           Dashboard
@@ -82,8 +91,8 @@ function SideBarComp() {
                       <Link to='/dashboard?tab=profile'>
                         <Sidebar.Item
                           active={tab === "profile"}
-                          icon={HiUser}
-                          className='cursor-pointer'
+                          icon={ProfileIcon}
+                          className='cursor-pointer  hover:bg-[#ff5555] hover:dark:bg-[#0345fc] hover:text-white hover:text-md hover:opacity-85 rounded-lg w-48 mb-4'
                           as='div'
                         >
                           Profile
@@ -91,7 +100,7 @@ function SideBarComp() {
                       </Link>
                       <Sidebar.Item
                         icon={FaSignOutAlt}
-                        className='cursor-pointer'
+                        className='cursor-pointer  hover:bg-[#ff5555] hover:dark:bg-[#ff5555] hover:text-white hover:text-md hover:opacity-85 rounded-lg w-48 mb-4'
                         onClick={() => {
                           handleSignout();
                           dispatch(signoutSuccess());

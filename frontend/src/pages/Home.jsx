@@ -26,14 +26,14 @@ function Home() {
         <div className='flex justify-center gap-10'>
           <Button
             borderRadius='4px'
-            className='bg-black text-white border-slate-800 rounded-[3px]'
+            className='bg-black text-white border-slate-800 h-10 rounded-[3px]'
             onClick={() => navigate("/service")}
           >
             Our Services
           </Button>
           <Button
             borderRadius='4px'
-            className='bg-black text-white border-slate-800 rounded-[3px]'
+            className='bg-black text-white border-slate-800 h-10 rounded-[3px]'
             onClick={() => navigate("/contact")}
           >
             Contact Us

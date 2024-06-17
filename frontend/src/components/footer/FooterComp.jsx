@@ -20,18 +20,20 @@ function FooterComp() {
           <div className='grid grid-cols-2 md:gap-0 sm:mt-4 md:grid-cols-5 gap-6 '>
             <div className='flex flex-col gap-6 mt-2'>
               <div className='flex justify-start items-center'>
-                <span className='flex justify-start items-center gap-1 whitespace-nowrap text-xl font-semibold dark:text-white pl-7'>
-                  <span className='bg-blue-500 dark:bg-[#ff5555] rounded-xl rounded-tr-none rounded-br-none py-1 pl-1'>
-                    Electric
-                  </span>{" "}
-                  <span className='bg-[#ff5555] dark:bg-blue-500 rounded-xl rounded-tl-none rounded-bl-none py-1 pr-1'>
-                    Bills™
+                <Link to='/'>
+                  <span className='flex justify-start items-center whitespace-nowrap text-xl font-semibold dark:text-white pl-7'>
+                    <span className='bg-blue-500 dark:bg-[#ff5555] rounded-xl rounded-tr-none rounded-br-none py-1 px-1 text-xl font-bold'>
+                      Online
+                    </span>{" "}
+                    <span className='bg-[#ff5555] dark:bg-blue-500 rounded-xl rounded-tl-none rounded-bl-none py-1 px-1 text-xl font-bold'>
+                      quiz
+                    </span>
                   </span>
-                </span>
+                </Link>
               </div>
               <span className='flex justify-start items-center gap-1 text-sm font-semibold'>
                 <IoMdMail className='w-6 h-6 text-[#ff5555]' />{" "}
-                Help@ElectricBills.Com
+                Help@OnlineQuiz.In
               </span>
               <span className='flex justify-start items-center gap-1 text-sm font-semibold'>
                 <IoCall className='w-6 h-6 text-[#ff5555]' />{" "}
@@ -99,7 +101,7 @@ function FooterComp() {
                     />
                     <Button
                       borderRadius='4px'
-                      className='bg-black text-white border-slate-800 rounded-[3px]'
+                      className='bg-black text-white border-slate-800 h-10 rounded-[3px]'
                     >
                       Subscribe
                     </Button>
@@ -113,7 +115,7 @@ function FooterComp() {
         <div className='w-full flex items-center justify-center'>
           <FooterCopyright
             href='#'
-            by='ElectricBills.Com All Rights Reserved™'
+            by='OnlineQuiz.In All Rights Reserved™'
             year={new Date().getFullYear()}
             className='text-black dark:text-white'
           />
