@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Dropdown,
   Navbar,
   NavbarBrand,
@@ -15,6 +14,10 @@ import { Button } from "../ui/moving-border";
 import { ImProfile } from "react-icons/im";
 import { signoutSuccess } from "../../redux/user/userSlice";
 import { PlaceholdersAndVanishInput } from "../ui/placeholders-and-vanish-input";
+import { Avatar } from "@mui/material";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import { IoIosMail } from "react-icons/io";
 
 function Header() {
   const path = useLocation().pathname;
@@ -23,6 +26,37 @@ function Header() {
   const { theme } = useSelector((state) => state.theme);
   const { currentUser } = useSelector((state) => state.user);
 
+  const StyledBadge = styled(Badge)(() => ({
+    "& .MuiBadge-badge": {
+      backgroundColor: "#44b700",
+      color: "#44b700",
+      width: "13px",
+      height: "13px",
+      borderRadius: "50%",
+      boxShadow: `0 0 0 2px ${theme}`,
+      "&::after": {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "50%",
+        animation: "ripple 1.2s infinite ease-in-out",
+        border: "1px solid currentColor",
+        content: '""',
+      },
+    },
+    "@keyframes ripple": {
+      "0%": {
+        transform: "scale(.8)",
+        opacity: 1,
+      },
+      "100%": {
+        transform: "scale(2.4)",
+        opacity: 0,
+      },
+    },
+  }));
   return (
     <Navbar
       fluid
@@ -66,21 +100,39 @@ function Header() {
             arrowIcon={false}
             inline
             label={
-              <Avatar
-                alt='user'
-                img={currentUser.profilePicture}
-                rounded
-                className='h-8 w-10'
-              />
+              <StyledBadge
+                overlap='circular'
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                variant='dot'
+              >
+                <Avatar
+                  alt={currentUser.username}
+                  src={currentUser.profilePicture}
+                  sx={{ width: 44, height: 44 }}
+                />
+              </StyledBadge>
             }
           >
             <Dropdown.Header>
-              <FaUserCheck className='w-10 h-10' color='navy' />
+              <div className='flex justify-center items-center gap-2'>
+                <StyledBadge
+                  overlap='circular'
+                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                  variant='dot'
+                >
+                  <Avatar
+                    alt={currentUser.username}
+                    src={currentUser.profilePicture}
+                    sx={{ width: 60, height: 60 }}
+                  />
+                </StyledBadge>
 
-              <span className='block text-md font-bold text-black truncate'>
-                @{currentUser.username}
-              </span>
-              <span className='block text-sm font-medium text-black truncate'>
+                <span className='block text-md font-bold text-blue-500 truncate'>
+                  @{currentUser.username}
+                </span>
+              </div>
+              <span className='text-sm font-medium text-gray-500 dark:text-gray-400 truncate mt-2 flex justify-center items-center gap-1'>
+                <IoIosMail className='w-6 h-6 pt-1' />
                 {currentUser.email}
               </span>
             </Dropdown.Header>

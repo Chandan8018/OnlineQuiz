@@ -5,6 +5,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";
 import userRouters from "./routes/user.route.js";
 import authRouters from "./routes/auth.route.js";
+import quizRouters from "./routes/quiz.route.js";
 import cookieParser from "cookie-parser";
 
 dotenv.config();
@@ -54,6 +55,7 @@ const specification = swaggerJSDoc(options);
 
 app.use("/api/user", userRouters);
 app.use("/api/auth", authRouters);
+app.use("/api/quiz", quizRouters);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specification));
 
 //Error-Handling Middleware

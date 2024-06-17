@@ -14,8 +14,8 @@ export default function Dashboard() {
   }, [location.search]);
   return (
     <>
-      <div className='min-h-screen flex flex-row'>
-        <div className=''>
+      <div className='min-h-screen flex items-start gap-1'>
+        <div className='mt-10'>
           {/* SideBar  */}
           <SideBarComp />
         </div>
