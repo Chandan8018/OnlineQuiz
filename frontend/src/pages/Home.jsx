@@ -10,7 +10,7 @@ function Home() {
   const navigate = useNavigate();
   const { theme } = useSelector((state) => state.theme);
   return (
-    <div className='h-[50rem] w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center'>
+    <div className='min-h-screen w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center'>
       <Spotlight
         className='-top-40 left-0 md:left-60 md:-top-20 z-10'
         fill={theme === "dark" ? "white" : "#13C6F7"}
