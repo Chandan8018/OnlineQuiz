@@ -86,7 +86,7 @@ function SignUp() {
         )}
         <form className='mt-4' onSubmit={handleSubmit}>
           <LabelInputContainer>
-            <Label htmlFor='username'>First name</Label>
+            <Label htmlFor='username'>User name</Label>
             <Input
               id='username'
               placeholder='chandan123'

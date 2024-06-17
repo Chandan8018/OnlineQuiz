@@ -236,7 +236,7 @@ function Profile() {
             <Alert color='failure'>{imageFileUploadError}</Alert>
           )}
           <LabelInputContainer className='mb-4'>
-            <Label htmlFor='userName'>First name</Label>
+            <Label htmlFor='userName'>User name</Label>
             <Input
               id='username'
               placeholder='User Name'

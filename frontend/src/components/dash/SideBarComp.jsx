@@ -16,7 +16,7 @@ function SideBarComp() {
   const location = useLocation();
   const [tab, setTab] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const { DashboardIcon, ProfileIcon } = SidebarIcons();
+  const { DashboardIcon, ProfileIcon, PostQuizIcon } = SidebarIcons();
 
   const handleClose = () => setIsOpen(false);
 
@@ -88,6 +88,18 @@ function SideBarComp() {
                           Dashboard
                         </Sidebar.Item>
                       </Link>
+                      {currentUser.isAdmin && (
+                        <Link to='/dashboard?tab=post-quiz'>
+                          <Sidebar.Item
+                            active={tab === "post-quiz"}
+                            icon={PostQuizIcon}
+                            className='cursor-pointer  hover:bg-[#ff5555] hover:dark:bg-[#0345fc] hover:text-white hover:text-md hover:opacity-85 rounded-lg w-48 mb-4'
+                            as='div'
+                          >
+                            Post Quiz
+                          </Sidebar.Item>
+                        </Link>
+                      )}
                       <Link to='/dashboard?tab=profile'>
                         <Sidebar.Item
                           active={tab === "profile"}

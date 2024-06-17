@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SideBarComp from "../components/dash/SideBarComp";
 import DashboardComp from "../components/dash/DashboardComp";
 import Profile from "../components/dash/Profile";
+import PostQuiz from "./PostQuiz";
 
 export default function Dashboard() {
   const location = useLocation();
@@ -21,6 +22,7 @@ export default function Dashboard() {
         </div>
 
         {tab === "dash" && <DashboardComp />}
+        {tab === "post-quiz" && <PostQuiz />}
         {tab === "profile" && <Profile />}
       </div>
     </>

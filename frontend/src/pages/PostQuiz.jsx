@@ -2,64 +2,62 @@ import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { cn } from "../utils/cn";
 import { Spotlight } from "../components/ui/Spotlight";
-import { useSelector, useDispatch } from "react-redux";
 import { Button } from "../components/ui/moving-border";
-import { Word } from "../data/data";
 import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
+import { Word } from "../data/data";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {
-  signInStart,
-  signInSuccess,
-  signInFailure,
-} from "../redux/user/userSlice";
+import { useSelector } from "react-redux";
 import { Alert, Spinner } from "flowbite-react";
-import OAuth from "../components/googleConfig/OAuth";
 
-function SignIn() {
+function PostQuiz() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { theme } = useSelector((state) => state.theme);
-  const userState = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({});
-
-  const { loading, error: errorMessage } = userState || {
-    loading: false,
-    error: null,
-  };
+  const [publishError, setPublishError] = useState(null);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.email || !formData.password) {
-      return dispatch(signInFailure("Please fill out all fields"));
+    if (
+      !formData.question ||
+      !formData.option1 ||
+      !formData.option2 ||
+      !formData.option3 ||
+      !formData.option4 ||
+      !formData.answer
+    ) {
+      return setErrorMessage("Please fill out all fields");
     }
-
+    if (!currentUser.isAdmin) {
+      return setErrorMessage("You are not allowed to create a quiz");
+    }
+    console.log(currentUser.isAdmin);
     try {
-      dispatch(signInStart());
-
-      const res = await fetch("/api/auth/signin", {
+      const res = await fetch("/api/quiz/create", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formData),
       });
-
       const data = await res.json();
-
-      if (data.success === false) {
-        //setErrorMessage(data.message)
-        dispatch(signInFailure(data.message));
+      if (!res.ok) {
+        setPublishError(data.message);
+        return;
       }
 
       if (res.ok) {
-        dispatch(signInSuccess(data));
-        navigate("/dashboard?tab=dash");
+        setPublishError(null);
+        navigate(`/quiz-post/${data.slug}`);
       }
     } catch (error) {
-      dispatch(signInFailure(error.message));
+      setPublishError("Something went wrong last", error);
     }
   };
   return (
@@ -71,41 +69,82 @@ function SignIn() {
       />
       {/* Radial gradient for the container to give a faded look */}
       <div className='absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'></div>
-      {/* Log In Form */}
+      {/* Sign Up Form */}
       <div className='max-w-3xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-[#abb1bb] dark:bg-[#1a232f] '>
         <div className='flex justify-center'>
           <TypewriterEffectSmooth words={Word} />
         </div>
         <p className='text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300'>
-          Login to aceternity if you can because we don&apos;t have a login flow
-          yet
+          Create an account to access our features
         </p>
         {errorMessage && (
           <Alert className='mt-5' color='failure'>
             {errorMessage}
           </Alert>
         )}
-        <form className='my-4' onSubmit={handleSubmit}>
+        <form className='mt-4' onSubmit={handleSubmit}>
+          <LabelInputContainer>
+            <Label htmlFor='question'>Quiz Question</Label>
+            <Input
+              id='question'
+              placeholder='Enter Quiz...'
+              type='text'
+              onChange={handleChange}
+            />
+          </LabelInputContainer>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
+            <LabelInputContainer className='mb-4'>
+              <Label htmlFor='option1'>Option1</Label>
+              <Input
+                id='option1'
+                placeholder='Enter Option1...'
+                type='text'
+                onChange={handleChange}
+              />
+            </LabelInputContainer>
+            <LabelInputContainer className='mb-4'>
+              <Label htmlFor='option2'>Option2</Label>
+              <Input
+                id='option2'
+                placeholder='Enter Option2...'
+                type='text'
+                onChange={handleChange}
+              />
+            </LabelInputContainer>
+
+            <LabelInputContainer className='mb-4'>
+              <Label htmlFor='option3'>Option3</Label>
+              <Input
+                id='option3'
+                placeholder='Enter Option3...'
+                type='text'
+                onChange={handleChange}
+              />
+            </LabelInputContainer>
+            <LabelInputContainer className='mb-4'>
+              <Label htmlFor='option4'>Option4</Label>
+              <Input
+                id='option4'
+                placeholder='Enter Option4...'
+                type='text'
+                onChange={handleChange}
+              />
+            </LabelInputContainer>
+          </div>
           <LabelInputContainer className='mb-4'>
-            <Label htmlFor='email'>Email Address</Label>
+            <Label htmlFor='answer'>Answer</Label>
             <Input
-              id='email'
-              placeholder='name@company.com'
-              type='email'
+              id='answer'
+              placeholder='Enter Answer...'
+              type='text'
               onChange={handleChange}
             />
           </LabelInputContainer>
-
-          <LabelInputContainer className='mb-8'>
-            <Label htmlFor='password'>Password</Label>
-            <Input
-              id='password'
-              placeholder='••••••••'
-              type='password'
-              onChange={handleChange}
-            />
-          </LabelInputContainer>
-
+          {publishError && (
+            <Alert className='my-5' color='failure'>
+              {publishError}
+            </Alert>
+          )}
           <Button
             borderRadius='8px'
             className='bg-[#ff5555] dark:bg-blue-400 hover:dark:bg-[#ff5555]  text-white  border-neutral-200 dark:border-slate-800 w-full text-md font-semibold h-12 rounded-[8px] hover:bg-blue-400'
@@ -117,26 +156,14 @@ function SignIn() {
                 <span className='pl-3'>Loading...</span>
               </>
             ) : (
-              "Sign In"
+              "Create Quiz"
             )}
+
             <BottomGradient />
           </Button>
 
           <div className='bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full' />
-          <OAuth />
         </form>
-        <div className='bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full' />
-        <div className='flex justify-start gap-1 opacity-100'>
-          <span className='text-md font-normal text-black dark:text-white'>
-            Don't have an account?
-          </span>
-          <span
-            className='text-md font-normal text-blue-600 cursor-pointer'
-            onClick={() => navigate("/sign-up")}
-          >
-            Sign Up
-          </span>
-        </div>
       </div>
     </div>
   );
@@ -159,4 +186,4 @@ const LabelInputContainer = ({ children, className }) => {
   );
 };
 
-export default SignIn;
+export default PostQuiz;
