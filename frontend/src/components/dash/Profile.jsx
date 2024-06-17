@@ -27,7 +27,6 @@ import {
 } from "firebase/storage";
 import { app } from "../../firebase.js";
 import { CircularProgressbar } from "react-circular-progressbar";
-import { MdDelete } from "react-icons/md";
 
 function Profile() {
   const navigate = useNavigate();

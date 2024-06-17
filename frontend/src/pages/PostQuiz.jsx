@@ -4,7 +4,7 @@ import { cn } from "../utils/cn";
 import { Spotlight } from "../components/ui/Spotlight";
 import { Button } from "../components/ui/moving-border";
 import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
-import { Word } from "../data/data";
+import { Create } from "../data/data";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -72,7 +72,7 @@ function PostQuiz() {
       {/* Sign Up Form */}
       <div className='max-w-3xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-[#abb1bb] dark:bg-[#1a232f] '>
         <div className='flex justify-center'>
-          <TypewriterEffectSmooth words={Word} />
+          <TypewriterEffectSmooth words={Create} />
         </div>
         <p className='text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300'>
           Create an account to access our features

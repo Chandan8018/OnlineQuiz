@@ -175,7 +175,7 @@ function Header() {
         </NavbarLink>
 
         <NavbarLink active={path === "/about"} as={"div"}>
-          <Link to='/about'>Electric Bills</Link>
+          <Link to='/about'>About Us</Link>
         </NavbarLink>
 
         <NavbarLink active={path === "/contact"} as={"div"}>

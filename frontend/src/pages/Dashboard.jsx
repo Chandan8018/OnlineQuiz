@@ -4,6 +4,7 @@ import SideBarComp from "../components/dash/SideBarComp";
 import DashboardComp from "../components/dash/DashboardComp";
 import Profile from "../components/dash/Profile";
 import PostQuiz from "./PostQuiz";
+import ViewQuiz from "./ViewQuiz";
 
 export default function Dashboard() {
   const location = useLocation();
@@ -23,6 +24,7 @@ export default function Dashboard() {
 
         {tab === "dash" && <DashboardComp />}
         {tab === "post-quiz" && <PostQuiz />}
+        {tab === "view-quiz" && <ViewQuiz />}
         {tab === "profile" && <Profile />}
       </div>
     </>
