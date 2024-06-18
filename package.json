@@ -2,11 +2,12 @@
   "name": "blackcofferassignment",
   "type": "module",
   "version": "1.0.0",
-  "description": "Welcome to the BlackCoffer Assignment project! This project is designed to showcase a web application built with modern technologies including React, Redux, Tailwind CSS, and more. The application features user authentication, a private route system, and a beautiful, responsive design.",
+  "description": "Welcome to the Onlinequiz Assignment project! This project is designed to showcase a web application built with modern technologies including React, Redux, Tailwind CSS, and more. The application features user authentication, a private route system, and a beautiful, responsive design.",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon api/index.js",
-    "start": "node api/index.js"
+    "start": "node api/index.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
