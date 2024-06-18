@@ -14,6 +14,7 @@ import SideBarComp from "./components/dash/SideBarComp";
 import Dashboard from "./pages/Dashboard";
 import UpdateQuiz from "./pages/UpdateQuiz";
 import OnlyAdminPrivateRoute from "./components/adminprivateroute/OnlyAdminPrivateRoute";
+import QuizPage from "./pages/QuizPage";
 
 function App() {
   return (
@@ -28,8 +29,10 @@ function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/test' element={<SideBarComp />} />
+
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/quiz-test' element={<QuizPage />} />
         </Route>
         <Route element={<OnlyAdminPrivateRoute />}>
           <Route path='/update-quiz/:quizId' element={<UpdateQuiz />} />

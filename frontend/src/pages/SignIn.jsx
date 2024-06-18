@@ -20,6 +20,7 @@ function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { theme } = useSelector((state) => state.theme);
+  const { currentUser } = useSelector((state) => state.user);
   const userState = useSelector((state) => state.user);
   const [formData, setFormData] = useState({});
 
@@ -56,7 +57,7 @@ function SignIn() {
 
       if (res.ok) {
         dispatch(signInSuccess(data));
-        navigate("/dashboard?tab=dash");
+        navigate("/dashboard?tab=profile");
       }
     } catch (error) {
       dispatch(signInFailure(error.message));
@@ -76,10 +77,19 @@ function SignIn() {
         <div className='flex justify-center'>
           <TypewriterEffectSmooth words={Word} />
         </div>
-        <p className='text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300'>
-          Login to aceternity if you can because we don&apos;t have a login flow
-          yet
-        </p>
+
+        <div className='flex justify-between'>
+          <div className='flex flex-col gap-2 text-md font-medium border-solid border-2 rounded-md p-2'>
+            <span>Demo Account for Admin</span>
+            <span>email: admin@quiz.com</span>
+            <span>password: admin@123</span>
+          </div>
+          <div className='flex flex-col gap-2 text-md font-medium border-solid border-2 rounded-md p-2'>
+            <span>Demo Account for Student</span>
+            <span>email: student@quiz.com</span>
+            <span>password: student@123</span>
+          </div>
+        </div>
         {errorMessage && (
           <Alert className='mt-5' color='failure'>
             {errorMessage}

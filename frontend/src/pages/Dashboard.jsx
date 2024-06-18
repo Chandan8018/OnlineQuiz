@@ -5,6 +5,7 @@ import DashboardComp from "../components/dash/DashboardComp";
 import Profile from "../components/dash/Profile";
 import PostQuiz from "./PostQuiz";
 import ViewQuiz from "./ViewQuiz";
+import StudentDashboardComp from "../components/dash/StudentDashboardComp";
 
 export default function Dashboard() {
   const location = useLocation();
@@ -26,6 +27,7 @@ export default function Dashboard() {
         {tab === "post-quiz" && <PostQuiz />}
         {tab === "view-quiz" && <ViewQuiz />}
         {tab === "profile" && <Profile />}
+        {tab === "student-dash" && <StudentDashboardComp />}
       </div>
     </>
   );

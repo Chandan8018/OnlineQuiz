@@ -48,6 +48,15 @@ export const Create = [
     className: "text-blue-500 dark:text-blue-500",
   },
 ];
+export const Update = [
+  {
+    text: "Update",
+  },
+  {
+    text: "Quiz.",
+    className: "text-blue-500 dark:text-blue-500",
+  },
+];
 
 export const home = [
   {

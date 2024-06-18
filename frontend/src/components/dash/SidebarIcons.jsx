@@ -4,6 +4,7 @@ import { MdDashboard } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { Button } from "../ui/moving-border";
 import { BiSolidAddToQueue } from "react-icons/bi";
+import { PiStudentBold } from "react-icons/pi";
 import { CiViewList } from "react-icons/ci";
 
 const SidebarIcons = () => {
@@ -70,7 +71,27 @@ const SidebarIcons = () => {
       <HiUser className='w-5 h-5' />
     );
 
-  return { DashboardIcon, ProfileIcon, PostQuizIcon, ViewQuizIcon };
+  const ViewStudentDashIcon = () =>
+    tab === "student-dash" ? (
+      <div className=''>
+        <Button
+          borderRadius='1.75rem'
+          className='bg-transparent text-black dark:text-white border-neutral-200 dark:border-slate-800 h-8 w-8'
+        >
+          <PiStudentBold className='w-5 h-5 text-[#46C5F0]' />
+        </Button>
+      </div>
+    ) : (
+      <PiStudentBold className='w-5 h-5' />
+    );
+
+  return {
+    DashboardIcon,
+    ProfileIcon,
+    PostQuizIcon,
+    ViewQuizIcon,
+    ViewStudentDashIcon,
+  };
 };
 
 export default SidebarIcons;
