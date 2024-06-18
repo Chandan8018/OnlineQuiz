@@ -12,6 +12,8 @@ import DashboardComp from "./components/dash/DashboardComp";
 import Profile from "./components/dash/Profile";
 import SideBarComp from "./components/dash/SideBarComp";
 import Dashboard from "./pages/Dashboard";
+import UpdateQuiz from "./pages/UpdateQuiz";
+import OnlyAdminPrivateRoute from "./components/adminprivateroute/OnlyAdminPrivateRoute";
 
 function App() {
   return (
@@ -28,6 +30,9 @@ function App() {
         <Route path='/test' element={<SideBarComp />} />
         <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
+        </Route>
+        <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path='/update-quiz/:quizId' element={<UpdateQuiz />} />
         </Route>
       </Routes>
       <FooterComp />

@@ -139,7 +139,7 @@ function ViewQuiz() {
                     </Table.Cell>
                     <Table.Cell>
                       <Link
-                        to={`/update-post/${quiz._id}`}
+                        to={`/update-quiz/${quiz._id}`}
                         className='text-teal-500'
                       >
                         <Button

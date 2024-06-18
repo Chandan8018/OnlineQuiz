@@ -1,46 +1,50 @@
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { Spotlight } from "../components/ui/Spotlight";
+import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
+import { Alert, Spinner } from "flowbite-react";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
-import { cn } from "../utils/cn";
-import { Spotlight } from "../components/ui/Spotlight";
-import { Button } from "../components/ui/moving-border";
-import { TypewriterEffectSmooth } from "../components/ui/typewriter-effect";
 import { Create } from "../data/data";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Alert, Spinner } from "flowbite-react";
+import { Button } from "../components/ui/moving-border";
+import { cn } from "../utils/cn";
 
-function PostQuiz() {
-  const navigate = useNavigate();
-  const { theme } = useSelector((state) => state.theme);
+function UpdateQuiz() {
   const { currentUser } = useSelector((state) => state.user);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({});
+  const { theme } = useSelector((state) => state.theme);
+  const navigate = useNavigate();
   const [publishError, setPublishError] = useState(null);
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
-  };
+  const [formData, setFormData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const { quizId } = useParams();
 
+  useEffect(() => {
+    try {
+      const fetchQuiz = async () => {
+        const res = await fetch(`/api/quiz/getquizzes?quizId=${quizId}`);
+        const data = await res.json();
+        if (!res.ok) {
+          setPublishError(data.message);
+          return;
+        }
+        if (res.ok) {
+          setPublishError(null);
+          setFormData(data.quizzes[0]);
+        }
+      };
+
+      fetchQuiz();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [quizId]);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !formData.question ||
-      !formData.option1 ||
-      !formData.option2 ||
-      !formData.option3 ||
-      !formData.option4 ||
-      !formData.answer
-    ) {
-      return setErrorMessage("Please fill out all fields");
-    }
-    if (!currentUser.isAdmin) {
-      return setErrorMessage("You are not allowed to create a quiz");
-    }
-
+    setLoading(true);
     try {
-      const res = await fetch("/api/quiz/create", {
-        method: "POST",
+      const res = await fetch(`/api/quiz/update/${formData._id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,10 +58,11 @@ function PostQuiz() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/quiz-post/${data.slug}`);
+        setLoading(false);
+        navigate("/dashboard?tab=view-quiz");
       }
     } catch (error) {
-      setPublishError("Something went wrong last", error);
+      setPublishError("Something went wrong");
     }
   };
   return (
@@ -75,13 +80,8 @@ function PostQuiz() {
           <TypewriterEffectSmooth words={Create} />
         </div>
         <p className='text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300'>
-          Create an account to access our features
+          Enter the details to access our Update features
         </p>
-        {errorMessage && (
-          <Alert className='mt-5' color='failure'>
-            {errorMessage}
-          </Alert>
-        )}
         <form className='mt-4' onSubmit={handleSubmit}>
           <LabelInputContainer>
             <Label htmlFor='question'>Quiz Question</Label>
@@ -89,7 +89,10 @@ function PostQuiz() {
               id='question'
               placeholder='Enter Quiz...'
               type='text'
-              onChange={handleChange}
+              onChange={(e) =>
+                setFormData({ ...formData, question: e.target.value })
+              }
+              value={formData.question}
             />
           </LabelInputContainer>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
@@ -99,7 +102,10 @@ function PostQuiz() {
                 id='option1'
                 placeholder='Enter Option1...'
                 type='text'
-                onChange={handleChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, option1: e.target.value })
+                }
+                value={formData.option1}
               />
             </LabelInputContainer>
             <LabelInputContainer className='mb-4'>
@@ -108,7 +114,10 @@ function PostQuiz() {
                 id='option2'
                 placeholder='Enter Option2...'
                 type='text'
-                onChange={handleChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, option2: e.target.value })
+                }
+                value={formData.option2}
               />
             </LabelInputContainer>
 
@@ -118,7 +127,10 @@ function PostQuiz() {
                 id='option3'
                 placeholder='Enter Option3...'
                 type='text'
-                onChange={handleChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, option3: e.target.value })
+                }
+                value={formData.question}
               />
             </LabelInputContainer>
             <LabelInputContainer className='mb-4'>
@@ -127,7 +139,10 @@ function PostQuiz() {
                 id='option4'
                 placeholder='Enter Option4...'
                 type='text'
-                onChange={handleChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, option4: e.target.value })
+                }
+                value={formData.option4}
               />
             </LabelInputContainer>
           </div>
@@ -137,11 +152,14 @@ function PostQuiz() {
               id='answer'
               placeholder='Enter Answer...'
               type='text'
-              onChange={handleChange}
+              onChange={(e) =>
+                setFormData({ ...formData, answer: e.target.value })
+              }
+              value={formData.answer}
             />
           </LabelInputContainer>
           {publishError && (
-            <Alert className='my-5' color='failure'>
+            <Alert className='mt-5' color='failure'>
               {publishError}
             </Alert>
           )}
@@ -156,7 +174,7 @@ function PostQuiz() {
                 <span className='pl-3'>Loading...</span>
               </>
             ) : (
-              "Create Quiz"
+              "Update Quiz"
             )}
 
             <BottomGradient />
@@ -186,4 +204,4 @@ const LabelInputContainer = ({ children, className }) => {
   );
 };
 
-export default PostQuiz;
+export default UpdateQuiz;
