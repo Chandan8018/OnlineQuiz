@@ -1,6 +1,6 @@
-# BlackCoffer Assignment
+# OnlineQuiz Assignment
 
-Welcome to the BlackCoffer Assignment project! This project is designed to showcase a web application built with modern technologies including React, Redux, Tailwind CSS, and more. The application features user authentication, a private route system, and a beautiful, responsive design.
+Welcome to the OnlineQuiz Assignment project! This project is designed to showcase a web application built with modern technologies including React, Redux, Tailwind CSS, and more. The application features user authentication, a private route system, and a beautiful, responsive design.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ Welcome to the BlackCoffer Assignment project! This project is designed to showc
 
 ## Features
 
-- **User Authentication**: Secure login and registration with Redux state management.
+- **User Authentication**: Secure login and registration with Node JS and Redux state management.
 - **Private Routes**: Protected routes that are accessible only to authenticated users.
 - **Responsive Design**: Mobile-first design using Tailwind CSS.
 - **Interactive UI**: Smooth animations using Framer Motion.
@@ -22,13 +22,30 @@ Welcome to the BlackCoffer Assignment project! This project is designed to showc
 
 ## Demo
 
-![Home Page](./src/assets/home.png)
+![Home Page](./frontend/public/homepage.png)
 ---
-![Sign Up](./src/assets/signup.png)
+![Sign Up](./frontend/public/signup.png)
 ---
-![Sign In](./src/assets/signin.png)
+![Sign In](./frontend/public/signin.png)
 ---
-![Update](./src/assets/update.png)
+![Update Profile](./frontend/public/updateProfile.png)
+---
+![SideBar](./frontend/public/sidebar.png)
+---
+![All Quizzes](./frontend/public/viewquiz.png)
+---
+![Delete Quizzes](./frontend/public/deletequiz.png)
+---
+![Update Quiz](./frontend/public/updatequiz.png)
+---
+![add Quiz](./frontend/public/createquiz.png)
+---
+![Quiz Instructions](./frontend/public/quizinstr.png)
+---
+![Quiz](./frontend/public/quiz.png)
+---
+![Complete Quiz](./frontend/public/quizcomplete.png)
+---
 
 
 
@@ -54,7 +71,7 @@ To run this project locally, follow these steps:
 
 ## Usage
 
-Once the server is running, you can visit the application at `http://localhost:3000`. You can navigate through different pages such as Home, Services, About, Contact, Sign In, and Sign Up. Authenticated users can access the Dashboard.
+Once the server is running, you can visit the application at `http://localhost:7970`. You can navigate through different pages such as Home, Services, About, Contact, Sign In, and Sign Up. Authenticated users can access the Dashboard.
 
 ### Home Page
 
@@ -72,35 +89,78 @@ Accessible only to authenticated users, the Dashboard displays user-specific inf
 
 ```sh
 .
-├── public
-├── src
-│   ├── components
-│   │   ├── footer
-│   │   │   └── FooterComp.jsx
-│   │   ├── header
-│   │   │   └── Header.jsx
-│   │   ├── privateroute
-│   │   │   └── PrivateRoute.jsx
-│   │   ├── ui
-│   │   │   └── Various UI Components
-│   ├── pages
-│   │   ├── About.jsx
-│   │   ├── Contact.jsx
-│   │   ├── Dashboard.jsx
-│   │   ├── Home.jsx
-│   │   ├── Service.jsx
-│   │   ├── SignIn.jsx
-│   │   └── SignUp.jsx
-│   ├── redux
-│   │   ├── theme
-│   │   │   └── themeSlice.js
-│   │   └── user
-│   │       └── userSlice.js
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── .eslintrc.js
+├── api
+|   ├── controllers
+|   |   ├── auth.controller.js
+|   |   ├── quiz.controller.js
+|   |   └── user.controller.js 
+|   ├── routes
+|   |   ├── auth.route.js
+|   |   ├── quiz.route.js
+|   |   └── user.route.js
+|   ├── models
+|   |   ├── quiz.model.js
+|   |   └── use.model.js
+|   ├── utils
+|   |   ├── error.js
+|   |   └── verifyUser.js
+|   └── index.js
+|   
+├── frontend
+|   ├── public
+|   ├── src
+│   |   ├── components
+│   │   |   ├── footer
+│   │   │   |   └── FooterComp.jsx
+│   │   |   ├── header
+│   │   │   |   └── Header.jsx
+│   │   |   ├── privateroute
+│   │   │   |   └── PrivateRoute.jsx
+│   │   |   ├── adminprivateroute
+│   │   │   |   └── OnlyAdminPrivateRoute.jsx
+│   │   |   ├── googleConfig
+│   │   │   |   └── OAuth.jsx
+│   │   |   ├── dash
+│   │   │   |   ├── DashboardComp.jsx
+|   |   |   |   ├── Profile.jsx  
+|   |   |   |   ├── SideBarComp.jsx  
+|   |   |   |   ├── SidebarIcons.jsx  
+|   |   |   |   └── StudentDashboardComp.jsx  
+│   │   |   ├── theme
+│   │   │   |   └── ThemeProvider.jsx
+│   │   |   ├── ui
+│   │   │   |   └── Various UI Components
+│   |   ├── pages
+│   │   |   ├── About.jsx
+│   │   |   ├── Contact.jsx
+│   │   |   ├── Dashboard.jsx
+│   │   |   ├── Home.jsx
+│   │   |   ├── Service.jsx
+│   │   |   ├── SignIn.jsx
+│   │   |   ├── QuizPage.jsx
+│   │   |   ├── UpdateQuiz.jsx
+│   │   |   ├── PostQuiz.jsx
+│   │   |   ├── ViewQuiz.jsx
+│   │   |   └── SignUp.jsx
+│   |   ├── redux
+│   │   |   ├── theme
+│   │   |   │   └── themeSlice.js
+│   │   |   └── user
+│   │   |       └── userSlice.js
+│   |   ├── .env
+│   |   ├── App.jsx
+│   |   ├── main.jsx
+│   |   ├── firebase.js
+│   |   └── index.css
+|   ├── .eslintrc.js
+|   ├── .gitignore
+|   ├── index.html
+|   ├── package-lock.json
+|   ├── package.json
+|   ├── postcss.config.js
+|   ├── tailwind.config.js
+|   └── vite.config.js
 ├── .gitignore
+├── package-lock.json
 ├── package.json
-├── README.md
-└── tailwind.config.js
+└── README.md
