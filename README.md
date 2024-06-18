@@ -1,24 +1,36 @@
-# OnlineQuiz Assignment
-
-Welcome to the OnlineQuiz Assignment project! This project is designed to showcase a web application built with modern technologies including React, Redux, Tailwind CSS, and more. The application features user authentication, a private route system, and a beautiful, responsive design.
+# Online Quiz Platform
 
 ## Table of Contents
-
+- [Project Overview](#project-overview)
 - [Features](#features)
-- [Demo](#demo)
+- [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Folder Structure](#folder-structure)
-- [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Project Overview
+The Online Quiz Platform is a web application that allows users to take quizzes, view their scores, and review correct answers. Admins can create and manage quizzes with multiple-choice questions. This application is built with modern web technologies to ensure a responsive and user-friendly experience.
 
 ## Features
+- **Quiz Creation (Admin)**: Admins can create quizzes with multiple-choice questions.
+- **Take Quiz (User)**: Users can take quizzes by answering multiple-choice questions.
+- **Submit Quiz**: Users can submit their answers and receive a score.
+- **View Results**: Users can view their scores and correct answers after submission.
+- **Review Answers**: Users can review their answers with the correct ones highlighted.
+- **Local Storage**: Quiz progress is saved in local storage, allowing users to resume later.
+- **Responsive Design**: The application is mobile-friendly and has a clean design.
 
-- **User Authentication**: Secure login and registration with Node JS and Redux state management.
-- **Private Routes**: Protected routes that are accessible only to authenticated users.
-- **Responsive Design**: Mobile-first design using Tailwind CSS.
-- **Interactive UI**: Smooth animations using Framer Motion.
-- **Reusable Components**: Modular and reusable React components.
+## Technologies Used
+- **Frontend**: React, Vite, JavaScript, Tailwind CSS, Framer Motion, and MUI
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **State Management**: Redux
+- **Authentication**: Google OAuth
+- **Animations**: Framer Motion
+- **Hosting**: Render
 
 ## Demo
 
@@ -50,28 +62,40 @@ Welcome to the OnlineQuiz Assignment project! This project is designed to showca
 
 
 ## Installation
-
-To run this project locally, follow these steps:
-
 1. **Clone the repository**:
-    ```sh
-    git clone https://github.com/yourusername/chaintechassignment.git
-    cd chaintechassignment
+    ```bash
+    git clone https://github.com/Chandan8018/OnlineQuiz.git
+    cd OnlineQuiz
     ```
 
-2. **Install dependencies**:
-    ```sh
+2. **Backend Setup**:
+    ```bash
     npm install
     ```
 
-3. **Start the development server**:
-    ```sh
+3. **Frontend Setup**:
+    ```bash
+    cd frontend
+    npm install
+    ```
+
+4. **Environment Variables**:
+    - Create a `.env` file in the root of the `api` directory and add your MongoDB URI, JWT secret, and other necessary environment variables.
+    - Create a `.env` file in the root of the `frontend` directory and add your Firebase and other necessary environment variables.
+
+## Usage
+1. **Start the backend server**:
+    ```bash
     npm run dev
     ```
 
-## Usage
+2. **Start the frontend server**:
+    ```bash
+    cd frontend
+    npm run dev
+    ```
 
-Once the server is running, you can visit the application at `http://localhost:7970`. You can navigate through different pages such as Home, Services, About, Contact, Sign In, and Sign Up. Authenticated users can access the Dashboard.
+3. **Open your browser** and navigate to `http://localhost:7970` to view the application.
 
 ### Home Page
 
