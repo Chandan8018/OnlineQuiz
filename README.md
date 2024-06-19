@@ -188,3 +188,16 @@ Accessible only to authenticated users, the Dashboard displays user-specific inf
 ├── package-lock.json
 ├── package.json
 └── README.md
+```
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
+---
+## Contact
+For any questions or inquiries, please contact:
+
+- Author: Chandan Kumar Sahoo
+- Email: chandankumarsahoo19@gmail.com
+- GitHub: https://github.com/Chandan8018/
+
+Feel free to reach out for any questions, suggestions, or contributions. Happy coding!
+

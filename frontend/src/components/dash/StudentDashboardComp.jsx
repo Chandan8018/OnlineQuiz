@@ -16,7 +16,7 @@ function StudentDashboardComp() {
       />
       <div className='absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]'></div>
       <div className='flex justify-center items-start h-[40rem] flex-col px-4'>
-        <div className='text-black dark:text-white text-xl md:text-3xl max-w-3xl  text-left mb-10'>
+        <div className='text-black dark:text-white text-xl md:text-3xl min-w-full md:w-4xl  text-left mb-10'>
           Click on{" "}
           <LinkPreview
             url='https://media.istockphoto.com/id/1389431151/vector/software-update-or-operating-system-updating-progress-bar-installing-app-patch-upgrade-to.jpg?s=612x612&w=0&k=20&c=tmRNQRr58GKBt2-ottP8bFuHbtxReJKXoeVBOEMdOPk='
@@ -24,7 +24,7 @@ function StudentDashboardComp() {
           >
             <Link to='/dashboard?tab=profile'>Profile Page</Link>
           </LinkPreview>{" "}
-          and Upadate Your Name & Photo for Certification.
+          and Upadate Your necessary details.
         </div>
         <div className='flex flex-col items-center justify-center p-4 '>
           <motion.div
@@ -42,7 +42,6 @@ function StudentDashboardComp() {
               </p>
               <ul className='list-disc list-inside text-gray-800 dark:text-gray-400'>
                 <li>You will have 1 minute to answer each question.</li>
-                <li>Once you select an answer, you cannot change it.</li>
                 <li>
                   Your score will be calculated based on the number of correct
                   answers.
